@@ -39,14 +39,14 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
 
     private void initViews(){
         presenter = new MoviePresenter(MoviesListActivity.this, new SimulateMovieClient());
-        recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_list);
-        tv_empty_msg = (TextView)findViewById(R.id.swipe_msg_tv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_list); // list
+        tv_empty_msg = (TextView)findViewById(R.id.swipe_msg_tv); // empty message
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); // for vertical liner list
         moviesAdapter = new MoviesAdapter(this);
         recyclerView.setAdapter(moviesAdapter);
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(listener);
-        swipeLayout.setColorSchemeColors(
+        swipeLayout.setColorSchemeColors( // colors for progress dialog
                 ContextCompat.getColor(MoviesListActivity.this, R.color.colorPrimary),
                 ContextCompat.getColor(MoviesListActivity.this, R.color.colorAccent),
                 ContextCompat.getColor(MoviesListActivity.this, android.R.color.holo_green_light)
@@ -71,6 +71,8 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
         swipeLayout.setRefreshing(false);
     }
 
+    // toggle the visibility of empty textview or list
+    // display list only when response it not empty
     private void showORHideListView(boolean flag){
         if (flag){
             tv_empty_msg.setVisibility(View.GONE);
@@ -101,4 +103,9 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
         showORHideListView(false);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.dropView();
+    }
 }

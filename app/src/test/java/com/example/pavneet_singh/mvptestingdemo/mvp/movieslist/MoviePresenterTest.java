@@ -92,10 +92,9 @@ public class MoviePresenterTest {
             movies.add(new Movie(RANDOM.nextInt(Integer.MAX_VALUE), "The Raid", Utility.convertStringToDate("2011-04-13"), 7.6, 111, Movie.Type.ACTION));
             movies.add(new Movie(RANDOM.nextInt(Integer.MAX_VALUE), "Burnt", Utility.convertStringToDate("2015-10-30"), 6.6, 111, Movie.Type.DRAMA));
         } catch (ParseException e) {
+
             e.printStackTrace();
         }
         return movies;
-
     }
-
 }

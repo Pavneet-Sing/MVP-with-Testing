@@ -14,13 +14,9 @@ import java.util.List;
 
 public final class MoviePresenter implements MoviesListContract.Presenter  {
 
-    @Mock
     private MoviesListContract.View view;
 
-    private MoviePresenter moviePresenter;
-
     private MovieRepo mclient;
-
 
 
     public MoviePresenter(MoviesListContract.View view,MovieRepo client) {
@@ -33,14 +29,16 @@ public final class MoviePresenter implements MoviesListContract.Presenter  {
         view = null;
     }
 
-
     @Override
     public void loadMoviewList() {
         view.showProgress();
-        EspressoTestingIdlingResource.increment();
         mclient.getMovieList(callback);
+        // required for espresso UI testing
+        EspressoTestingIdlingResource.increment();
     }
 
+    // callback mechanism , onResponse will be triggered with response
+    // by simulatemovieclient(or your network or database process) and pass the response to view
     private final OnResponseCallback callback = new OnResponseCallback() {
         @Override
         public void onResponse(List<Movie> movies) {
