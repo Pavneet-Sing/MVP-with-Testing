@@ -73,15 +73,15 @@ public class MovieListTest {
         // perform swipe
         onView(withId(R.id.swipe_msg_tv)).check(matches(isDisplayed()));
         onView(withId(R.id.swipe_container)).perform(swipeDown());
-        // verify swipe is displayed
+        // verify swipe is being displayed
         onView(withId(R.id.swipe_msg_tv)).check(matches(not(isDisplayed())));
 
-        // verify recycler view is displayed
+        // verify recycler view is being displayed
         onView(withId(R.id.movies_recycler_list)).check(matches(isDisplayed()));
         onView(withId(R.id.movies_recycler_list))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
-        // Verify the toast text
+        // Verify the toast text content
         MoviesListActivity activity = activityTestRule.getActivity();
         onView(withText("Title : 'IT' Rating : '7.6'")).
                 inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).
