@@ -33,13 +33,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
 
     @Override
     public MovieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_movie_model,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_movie_model, parent, false);
         return new MovieHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MovieHolder holder, final int position) {
-        Log.e(TAG, "onBindViewHolder: "+position);
+        Log.e(TAG, "onBindViewHolder: " + position);
         holder.movieTitle.setText(movStrings.get(position).getTitle());
         holder.date.setText(Utility.convertMinutesToDuration(movStrings.get(position).getDurationinMinutes()));
         holder.rating.setText(Double.toString(movStrings.get(position).getRating()));
@@ -51,11 +51,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
         });
     }
 
-    public void setList(List<Movie> list){
+    public void setList(List<Movie> list) {
         movStrings.clear();
         movStrings.addAll(list);
         notifyDataSetChanged();
-        Log.e(TAG, "onNext: "+movStrings.size() );
+        Log.e(TAG, "onNext: " + movStrings.size());
     }
 
 

@@ -8,4 +8,4 @@
 ![mvp demo](screenshots/demo.gif?raw=true "demo")
 
 #### License
-MIT
+[MIT](LICENSE)

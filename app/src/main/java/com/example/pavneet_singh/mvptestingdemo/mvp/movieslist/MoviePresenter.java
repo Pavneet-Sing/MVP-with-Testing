@@ -1,25 +1,24 @@
 package com.example.pavneet_singh.mvptestingdemo.mvp.movieslist;
 
-import com.example.pavneet_singh.mvptestingdemo.model.MovieRepo;
-import com.example.pavneet_singh.mvptestingdemo.util.EspressoTestingIdlingResource;
-import com.example.pavneet_singh.mvptestingdemo.model.SimulateMovieClient;
 import com.example.pavneet_singh.mvptestingdemo.model.Movie;
+import com.example.pavneet_singh.mvptestingdemo.model.MovieRepo;
 import com.example.pavneet_singh.mvptestingdemo.mvp.movieslist.MoviesListContract.OnResponseCallback;
-import org.mockito.Mock;
+import com.example.pavneet_singh.mvptestingdemo.util.EspressoTestingIdlingResource;
+
 import java.util.List;
 
 /**
  * Created by Pavneet_Singh on 1/19/18.
  */
 
-public final class MoviePresenter implements MoviesListContract.Presenter  {
+public final class MoviePresenter implements MoviesListContract.Presenter {
 
     private MoviesListContract.View view;
 
     private MovieRepo mclient;
 
 
-    public MoviePresenter(MoviesListContract.View view,MovieRepo client) {
+    public MoviePresenter(MoviesListContract.View view, MovieRepo client) {
         this.view = view;
         mclient = client;
     }

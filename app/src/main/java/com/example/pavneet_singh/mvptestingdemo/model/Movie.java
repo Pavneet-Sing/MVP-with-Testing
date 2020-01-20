@@ -19,7 +19,6 @@ public class Movie {
     }
 
     /**
-     *
      * @param id
      * @param title
      * @param releaseDate
@@ -36,8 +35,8 @@ public class Movie {
         this.type = type;
     }
 
-    public enum Type{
-        ACTION,HORROR,THRILLER,ROMANTIC,DRAMA,FICTION,ANIMATION
+    public enum Type {
+        ACTION, HORROR, THRILLER, ROMANTIC, DRAMA, FICTION, ANIMATION
     }
 
     public int getId() {
@@ -90,6 +89,6 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Title : '" + title + '\''+" Rating : '" + rating + '\'';
+        return "Title : '" + title + '\'' + " Rating : '" + rating + '\'';
     }
 }

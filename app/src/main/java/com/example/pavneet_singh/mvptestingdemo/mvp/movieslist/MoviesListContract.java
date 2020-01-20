@@ -16,19 +16,24 @@ public interface MoviesListContract {
 
     interface View {
         void showProgress();
+
         void hideProgress();
+
         void showMovieList(List<Movie> movies);
+
         void showLoadingError(String errMsg);
 
     }
 
-    interface Presenter{
+    interface Presenter {
         void loadMoviewList();
+
         void dropView();
     }
 
-    interface OnResponseCallback{
+    interface OnResponseCallback {
         void onResponse(List<Movie> movies);
+
         void onError(String errMsg);
     }
 }

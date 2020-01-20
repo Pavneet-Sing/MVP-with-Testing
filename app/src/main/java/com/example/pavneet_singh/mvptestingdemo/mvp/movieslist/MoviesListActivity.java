@@ -16,13 +16,13 @@ import com.example.pavneet_singh.mvptestingdemo.model.SimulateMovieClient;
 
 import java.util.List;
 
-import static android.support.v4.widget.SwipeRefreshLayout.*;
+import static android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 
 /**
  * Created by Pavneet_Singh on 1/19/18.
  */
 
-public class MoviesListActivity extends AppCompatActivity implements MoviesListContract.View{
+public class MoviesListActivity extends AppCompatActivity implements MoviesListContract.View {
 
     private RecyclerView recyclerView;
     private MoviesAdapter moviesAdapter;
@@ -37,10 +37,10 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
         presenter = new MoviePresenter(MoviesListActivity.this, new SimulateMovieClient());
         recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_list); // list
-        tv_empty_msg = (TextView)findViewById(R.id.swipe_msg_tv); // empty message
+        tv_empty_msg = (TextView) findViewById(R.id.swipe_msg_tv); // empty message
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); // for vertical liner list
         moviesAdapter = new MoviesAdapter(this);
         recyclerView.setAdapter(moviesAdapter);
@@ -73,11 +73,11 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
 
     // toggle the visibility of empty textview or list
     // display list only when response it not empty
-    private void showORHideListView(boolean flag){
-        if (flag){
+    private void showORHideListView(boolean flag) {
+        if (flag) {
             tv_empty_msg.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             tv_empty_msg.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
@@ -85,7 +85,7 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
 
     @Override
     public void showMovieList(List<Movie> movies) {
-        if (!movies.isEmpty()){
+        if (!movies.isEmpty()) {
             moviesAdapter.setList(movies);
             showORHideListView(true);
         }
@@ -97,7 +97,7 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListC
         showORHideListView(false);
     }
 
-    private void hideProgressAndShowErr(String msg){
+    private void hideProgressAndShowErr(String msg) {
         tv_empty_msg.setVisibility(View.VISIBLE);
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         showORHideListView(false);

@@ -1,14 +1,9 @@
 package com.example.pavneet_singh.mvptestingdemo.mvp.movieslist;
 
-import android.support.test.espresso.IdlingRegistry;
-
 import com.example.pavneet_singh.mvptestingdemo.model.Movie;
 import com.example.pavneet_singh.mvptestingdemo.model.MovieRepo;
-import com.example.pavneet_singh.mvptestingdemo.util.EspressoTestingIdlingResource;
-import com.example.pavneet_singh.mvptestingdemo.model.SimulateMovieClient;
 import com.example.pavneet_singh.mvptestingdemo.util.Utility;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -45,13 +40,13 @@ public class MoviePresenterTest {
     private ArgumentCaptor<MoviesListContract.OnResponseCallback> argumentCaptor;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         // A convenient way to inject mocks by using the @Mock annotation in Mockito.
         //  For mock injections , initMocks method needs to be called.
         MockitoAnnotations.initMocks(this);
 
         // get the presenter reference and bind with view for testing
-        presenter = new MoviePresenter(view,movieRepo);
+        presenter = new MoviePresenter(view, movieRepo);
 
 
     }
@@ -59,9 +54,9 @@ public class MoviePresenterTest {
     @Test
     public void loadMoviewList() throws Exception {
         presenter.loadMoviewList();
-        verify(movieRepo,times(1)).getMovieList(argumentCaptor.capture());
+        verify(movieRepo, times(1)).getMovieList(argumentCaptor.capture());
         argumentCaptor.getValue().onResponse(getList());
-        verify(view,times(1)).hideProgress();
+        verify(view, times(1)).hideProgress();
         ArgumentCaptor<List> entityArgumentCaptor = ArgumentCaptor.forClass(List.class);
         verify(view).showMovieList(entityArgumentCaptor.capture());
 
@@ -71,10 +66,10 @@ public class MoviePresenterTest {
     @Test
     public void OnError() throws Exception {
         presenter.loadMoviewList();
-        verify(movieRepo,times(1)).getMovieList(argumentCaptor.capture());
+        verify(movieRepo, times(1)).getMovieList(argumentCaptor.capture());
         argumentCaptor.getValue().onError("Error");
         ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
-        verify(view,times(1)).showLoadingError(argumentCaptor.capture());
+        verify(view, times(1)).showLoadingError(argumentCaptor.capture());
         verify(view).showLoadingError(argumentCaptor.getValue());
     }
 
